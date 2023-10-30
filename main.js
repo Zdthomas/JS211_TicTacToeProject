@@ -33,25 +33,127 @@ const printBoard = () => {
 }
 
 const horizontalWin = () => {
+  if((board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X") 
+  || (board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O")
+  || (board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X")
+  || (board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O") 
+  || (board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X") 
+  || (board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O")
+    ){
+
+      return true
+
+    } else {return false}
+  
   // Your code here to check for horizontal wins
 }
 
 const verticalWin = () => {
+  if((board[0][0] == "X" && board[1][0] == "X" && board[2][0] == "X") 
+  || (board[0][0] == "O" && board[1][0] == "O" && board[2][0] == "O")
+  || (board[0][1] == "X" && board[1][1] == "X" && board[2][1] == "X")
+  || (board[0][1] == "O" && board[1][1] == "O" && board[2][1] == "O") 
+  || (board[0][2] == "X" && board[1][2] == "X" && board[2][2] == "X") 
+  || (board[0][2] == "O" && board[1][2] == "O" && board[2][2] == "O")
+  ){
+    return true
+
+  } else { return false}
+  
+  // Your code here to check for vertical wins
+
+
   // Your code here to check for vertical wins
 }
 
 const diagonalWin = () => {
+  if((board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X") 
+  || (board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O")
+  || (board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X")
+  || (board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O") 
+){
+
+  return true
+
+} else {return false}
   // Your code here to check for diagonal wins
 }
 
+
+
+
 const checkForWin = () => {
+  if(horizontalWin() || verticalWin() || diagonalWin()) {
+    window.alert(`Player ${playerTurn} won!`)
+  
+  } else {
+    changeMarker()
+  }
   // Your code here call each of the check for types of wins
 }
 
+const changeMarker = () => {
+  if(playerTurn === "X"){
+    playerTurn = "O"
+  } else {
+    playerTurn = "X"
+  }
+}
+// const handleClick = (element) => {
+ 
+//   console.log(`The element you clicked on has an id:  ${element.id}`)
+
+//   if(!document.getElementById(element.id).innerHTML){
+//     addMarker(element.id)
+//   }
+// }
+
+
+// const handleClick = (element) => {
+ 
+//   console.log(`The element you clicked on has an id:  ${element.id}`)
+
+//   if(!document.getElementById(element.id).innerHTML){
+//     addMarker(element.id)
+//   }
+// }
+
+
 const ticTacToe = (row, column) => {
+
+  
+  board[row][column] = playerTurn
+  
+
+
+
+  const addMarker = (row, column) => {
+    if (board[row][column] === ' ') {
+      board[row][column] = playerTurn;
+    }
+  };
+  
+  
+  
+    
+
+  if (checkForWin()) {
+    window.alert((`Player ${playerTurn} won!`))
+    // resetBoard()
+    
+  } else {
+    changeMarker()
+  }
+
+
+  
   // Your code here to place a marker on the board
   // then check for a win
-}
+  }
+
+
+
+
 
 const getPrompt = () => {
   printBoard();
